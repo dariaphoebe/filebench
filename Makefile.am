@@ -4,7 +4,7 @@ SUBDIRS = workloads
 BUILT_SOURCES = parser_gram.h
 
 bin_PROGRAMS = filebench
-filebench_SOURCES = eventgen.c fb_avl.c fb_localfs.c \
+filebench_SOURCES = eventgen.c fb_avl.c fb_localfs.c fb_uafs.c \
 		    fb_random.c fileset.c flowop.c flowop_library.c \
 		    gamma_dist.c ipc.c misc.c multi_client_sync.c \
 		    parser_gram.y parser_lex.l procflow.c stats.c \

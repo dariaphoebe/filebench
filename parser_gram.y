@@ -1855,6 +1855,7 @@ var_int_val: FSV_VAL_INT
 "filebench: interprets WML script and generates apporpriate workload\n" \
 "Options:\n" \
 "   [-h] Display verbose help\n" \
+"   [-t type] Benchmark a filesystem of the type named. (afs, nfs3, nfs4, or cifs. defaults to localfs)\n" \
 "   [-f <filename>] use specified file as an input instead of stdin\n"
 
 #define	PARSER_CMDS \
@@ -2062,7 +2063,8 @@ fb_set_rlimit(void)
 int
 main(int argc, char *argv[])
 {
-	const char cmd_options[] = "m:s:a:i:hf:";
+	const char cmd_options[] = "m:s:a:i:hf:t:";
+	fb_plugin_type_t plugtype = LOCAL_FS_PLUG;
 	int opt;
 	char *procname = NULL;
 	int instance;
@@ -2095,6 +2097,22 @@ main(int argc, char *argv[])
 
 			dofile = DOFILE_TRUE;
 			fscriptname = optarg;
+			break;
+		case 't':
+			if (!optarg)
+				usage(1);
+			if (strcmp(optarg, "afs") == 0)
+				plugtype = UAFS_PLUG;
+			else if (strcmp(optarg, "cifs") == 0)
+				plugtype = CIFS_PLUG;
+			else if (strcmp(optarg, "nfs3") == 0)
+				plugtype = NFS3_PLUG;
+			else if (strcmp(optarg, "nfs4") == 0)
+				plugtype = NFS4_PLUG;
+			else if (strcmp(optarg, "localfs") == 0)
+				plugtype = LOCAL_FS_PLUG;
+			else
+				usage(1);
 			break;
 		/* private parameters: when filebench calls itself */
 		case 'a':
@@ -2173,7 +2191,7 @@ main(int argc, char *argv[])
 
 	fb_set_shmmax();
 
-	ipc_init();
+	ipc_init(plugtype);
 
 	if (fscriptname)
 		(void)strcpy(filebench_shm->shm_fscriptname, fscriptname);

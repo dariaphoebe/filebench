@@ -37,7 +37,8 @@ typedef enum fb_plugin_type {
 	LOCAL_FS_PLUG = 0,
 	NFS3_PLUG,
 	NFS4_PLUG,
-	CIFS_PLUG
+	CIFS_PLUG,
+	UAFS_PLUG
 } fb_plugin_type_t;
 
 /* universal file descriptor for both local and nfs file systems */

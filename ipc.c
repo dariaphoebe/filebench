@@ -273,7 +273,7 @@ ipc_seminit(void)
  * memory. It also uses ftok() to get a shared memory semaphore key for later
  * use in allocating shared semaphores.
  */
-void ipc_init(void)
+void ipc_init(fb_plugin_type_t plugtype)
 {
 	int shmfd;
 	char tmpbuf[MB];
@@ -331,6 +331,7 @@ void ipc_init(void)
 	filebench_shm->shm_string_ptr = &filebench_shm->shm_strings[0];
 	filebench_shm->shm_ptr = (char *)filebench_shm->shm_addr;
 	filebench_shm->shm_path_ptr = &filebench_shm->shm_filesetpaths[0];
+	filebench_shm->shm_filesys_type = plugtype;
 
 	(void) pthread_mutex_init(&filebench_shm->shm_fileset_lock,
 	    ipc_mutexattr(IPC_MUTEX_NORMAL));

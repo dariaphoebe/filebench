@@ -496,6 +496,10 @@ filebench_plugin_funcvecinit(void)
 		fb_lfs_funcvecinit();
 		break;
 
+	case UAFS_PLUG:
+	    fb_uafs_funcvecinit();
+	    break;
+
 	case NFS3_PLUG:
 	case NFS4_PLUG:
 	case CIFS_PLUG:

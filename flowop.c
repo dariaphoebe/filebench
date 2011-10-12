@@ -706,6 +706,10 @@ flowop_plugin_flowinit(void)
 		fb_lfs_flowinit();
 		break;
 
+	case UAFS_PLUG:
+		fb_uafs_flowinit();
+		break;
+
 	case NFS3_PLUG:
 	case NFS4_PLUG:
 	case CIFS_PLUG:
