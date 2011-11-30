@@ -19,9 +19,10 @@
  * CDDL HEADER END
  */
 /*
- * Copyright 2009 Sun Microsystems, Inc.  All rights reserved.
+ * Copyright 2011 Your File System, Inc. All rights reserved.
  * Use is subject to license terms.
  *
+ * Portions Copyright 2009 Sun Microsystems, Inc.
  * Portions Copyright 2008 Denis Cheng
  */
 
